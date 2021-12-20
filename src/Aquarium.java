@@ -1,19 +1,16 @@
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Aquarium {
-    private final List<Algue> algues;
-    private final Set<Poisson> poissons;
+    private final Set<Algue> algues;
+    private final Set<Poisson> poissonsSet;
 
     public Aquarium() {
-        algues = new LinkedList<>();
-        poissons = new HashSet<Poisson>();
+        algues = new HashSet<>();
+        poissonsSet = new HashSet<>();
     }
 
     public void addPoisson(Poisson poisson) {
-        poissons.add(poisson);
+        poissonsSet.add(poisson);
     }
 
     public void addAlgue() {
@@ -22,6 +19,14 @@ public class Aquarium {
 
     public void nouveauTour() {
         System.out.println("Nombre d'algues : " + algues.size());
-        System.out.println("Poissons : " + poissons);
+        System.out.println("Poissons : " + poissonsSet);
+    }
+
+    public void removePoisson(Poisson poisson) {
+        poissonsSet.remove(poisson);
+    }
+
+    public Set<Poisson> getPoissonsSet() {
+        return poissonsSet;
     }
 }

@@ -1,14 +1,14 @@
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public abstract class Poisson {
     private final String nom;
     private final String sexe;
-    private static final Set<Poisson> voisins;
+    private final Aquarium aquarium;
 
-    protected Poisson(String nom, String sexe) {
+    protected Poisson(String nom, String sexe, Aquarium aquarium) {
         this.nom = nom;
         this.sexe = sexe;
+        this.aquarium = aquarium;
     }
 
     public String getNom() {
@@ -27,6 +27,6 @@ public abstract class Poisson {
 
     @Override
     public String toString() {
-        return nom + ", " + sexe;
+        return nom + " : " + sexe;
     }
 }

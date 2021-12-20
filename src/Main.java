@@ -6,6 +6,7 @@ public class Main {
         aquarium.addAlgue();
         aquarium.addAlgue();
         aquarium.addPoisson(new Merou("Amélie", "Femelle"));
+        aquarium.addPoisson(new Carpe("Caroline", "Femelle"));
         aquarium.nouveauTour();
     }
 }
