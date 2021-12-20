@@ -1,8 +1,10 @@
 import java.util.Objects;
+import java.util.Set;
 
-public class Poisson {
+public abstract class Poisson {
     private final String nom;
     private final String sexe;
+    private static final Set<Poisson> voisins;
 
     protected Poisson(String nom, String sexe) {
         this.nom = nom;

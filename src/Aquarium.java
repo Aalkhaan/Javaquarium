@@ -1,13 +1,15 @@
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public class Aquarium {
     private final List<Algue> algues;
-    private final List<Poisson> poissons;
+    private final Set<Poisson> poissons;
 
     public Aquarium() {
         algues = new LinkedList<>();
-        poissons = new LinkedList<>();
+        poissons = new HashSet<Poisson>();
     }
 
     public void addPoisson(Poisson poisson) {
