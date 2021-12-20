@@ -1,14 +1,12 @@
 import java.util.*;
 
-public abstract class Poisson {
+public abstract class Poisson extends Vivant {
     private final String nom;
     private final String sexe;
-    private final Aquarium aquarium;
 
-    protected Poisson(String nom, String sexe, Aquarium aquarium) {
+    protected Poisson(String nom, String sexe) {
         this.nom = nom;
         this.sexe = sexe;
-        this.aquarium = aquarium;
     }
 
     public String getNom() {
@@ -28,5 +26,9 @@ public abstract class Poisson {
     @Override
     public String toString() {
         return nom + " : " + sexe;
+    }
+
+    public boolean seFaitMordre() {
+        return removePV(4);
     }
 }

@@ -1,16 +1,16 @@
 import java.util.*;
 
 public class Aquarium {
-    private final Set<Algue> algues;
-    private final Set<Poisson> poissonsSet;
+    private final List<Algue> algues;
+    private final List<Poisson> poissons;
 
     public Aquarium() {
-        algues = new HashSet<>();
-        poissonsSet = new HashSet<>();
+        algues = new ArrayList<>();
+        poissons = new ArrayList<>();
     }
 
     public void addPoisson(Poisson poisson) {
-        poissonsSet.add(poisson);
+        poissons.add(poisson);
     }
 
     public void addAlgue() {
@@ -18,15 +18,29 @@ public class Aquarium {
     }
 
     public void nouveauTour() {
+
+        for (Poisson poisson : poissons) {
+            int randomIndice;
+            if (poissons.size() > 1 && poisson instanceof Carnivore) {
+                randomIndice = getRandomIndex(poissons);
+                Poisson randomPoisson = poissons.get(randomIndice);
+                while (randomPoisson == poisson) {
+                    randomIndice = getRandomIndex(poissons);
+                    randomPoisson = poissons.get(randomIndice);
+                }
+                ((Carnivore) poisson).manger(randomPoisson);
+            } else if (algues.size() > 0) {
+                randomIndice = getRandomIndex(algues);
+                Algue randomAlgue = algues.get(randomIndice);
+                ((Herbivore) poisson).manger(randomAlgue);
+            }
+        }
         System.out.println("Nombre d'algues : " + algues.size());
-        System.out.println("Poissons : " + poissonsSet);
+        System.out.println("Poissons : " + poissons);
+
     }
 
-    public void removePoisson(Poisson poisson) {
-        poissonsSet.remove(poisson);
-    }
-
-    public Set<Poisson> getPoissonsSet() {
-        return poissonsSet;
+    private int getRandomIndex(Collection<?> collection) {
+        return new Random().nextInt(collection.size() - 1);
     }
 }
