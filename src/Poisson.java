@@ -1,6 +1,6 @@
 import java.util.*;
 
-public abstract class Poisson extends Vivant {
+public abstract class Poisson extends Vivant implements Comparable<Poisson> {
     private final String nom;
     private final String sexe;
 
@@ -28,7 +28,19 @@ public abstract class Poisson extends Vivant {
         return nom + " : " + sexe;
     }
 
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
+
     public boolean seFaitMordre() {
         return removePV(4);
     }
+
+    @Override
+    public int compareTo(Poisson poisson) {
+        return 0;
+    }
+
+    public abstract String getEspece();
 }

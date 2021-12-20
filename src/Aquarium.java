@@ -3,14 +3,20 @@ import java.util.*;
 public class Aquarium {
     private final List<Algue> algues;
     private final List<Poisson> poissons;
+    private final Map<String, List<Poisson>> mapPoissons;
 
     public Aquarium() {
         algues = new ArrayList<>();
         poissons = new ArrayList<>();
+        mapPoissons = new HashMap<>();
     }
 
     public void addPoisson(Poisson poisson) {
         poissons.add(poisson);
+        if (!mapPoissons.containsKey(poisson.getEspece())) {
+            mapPoissons.put(poisson.getEspece(), new ArrayList<>());
+        }
+        mapPoissons.get(poisson.getEspece()).add(poisson);
     }
 
     public void addAlgue() {
@@ -18,8 +24,33 @@ public class Aquarium {
     }
 
     public void nouveauTour() {
+        // Mélange les entités vivantes.
+        Collections.shuffle(algues);
+        Collections.shuffle(poissons);
+        for (List<Poisson> list : mapPoissons.values()) {
+            Collections.shuffle(list);
+        }
 
-        for (Poisson poisson : poissons) {
+        // Les algues grandissent.
+        for (Algue algue : algues) {
+            algue.addPV(1);
+        }
+
+        // Les poissons ont faim et perdent 1 PV. Ceux qui ont moins de 5 PV sont ajoutés
+        // à la liste des poissons qui veulent manger.
+        LinkedList<Poisson> poissonsFaim = new LinkedList<>();
+        for (int i = 0; i < poissons.size();) {
+            if (poissons.get(i).removePV(1)) {
+                poissons.remove(i);
+            } else {
+                if (poissons.get(i).getpV() <= 5) {
+                    poissonsFaim.add(poissons.get(i));
+                }
+                i++;
+            }
+        }
+
+        for (Poisson poisson : poissonsFaim) {
             int randomIndice;
             if (poissons.size() > 1 && poisson instanceof Carnivore) {
                 randomIndice = getRandomIndex(poissons);
