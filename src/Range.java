@@ -1,3 +1,4 @@
+@SuppressWarnings("ClassCanBeRecord")
 public class Range {
     private final int inf;
     private final int sup;
