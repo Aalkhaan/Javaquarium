@@ -1,10 +1,5 @@
 public class Sole extends Herbivore {
-    public Sole(String nom, String sexe) {
-        super(nom, sexe);
-    }
-
-    @Override
-    public String getEspece() {
-        return "Sole";
+    public Sole(String nom, String sexe, Aquarium aquarium) {
+        super(nom, sexe, Espece.SOLE, aquarium);
     }
 }

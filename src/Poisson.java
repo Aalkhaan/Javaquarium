@@ -3,11 +3,13 @@ import java.util.*;
 public abstract class Poisson extends Vivant implements Comparable<Poisson> {
     private final String nom;
     private final String sexe;
+    private final Espece espece;
     private final Aquarium aquarium;
 
-    protected Poisson(String nom, String sexe, Aquarium aquarium) {
+    protected Poisson(String nom, String sexe, Espece espece, Aquarium aquarium) {
         this.nom = nom;
         this.sexe = sexe;
+        this.espece = espece;
         this.aquarium = aquarium;
     }
 
@@ -27,14 +29,10 @@ public abstract class Poisson extends Vivant implements Comparable<Poisson> {
 
     @Override
     public String toString() {
-        return nom + ", " + sexe;
+        return nom + ", " + sexe + ", " + getpV() + " PVs";
     }
 
     @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
-
     public boolean seFaitMordre() {
         return removePV(4);
     }
@@ -46,11 +44,13 @@ public abstract class Poisson extends Vivant implements Comparable<Poisson> {
         return nom.compareTo(getNom());
     }
 
-    public abstract String getEspece();
+    public Espece getEspece() {
+        return espece;
+    }
 
     public abstract void manger();
 
-    public Map<String, List<Poisson>> getMapPoissons() {
+    public Map<Espece, List<Poisson>> getMapPoissons() {
         return aquarium.getMapPoissons();
     }
 

@@ -2,8 +2,8 @@ import java.util.List;
 import java.util.Random;
 
 public abstract class Herbivore extends Poisson {
-    protected Herbivore(String nom, String sexe, Aquarium aquarium) {
-        super(nom, sexe, aquarium);
+    protected Herbivore(String nom, String sexe, Espece espece, Aquarium aquarium) {
+        super(nom, sexe, espece, aquarium);
     }
 
     @Override

@@ -1,10 +1,5 @@
 public class Carpe extends Herbivore {
-    public Carpe(String nom, String sexe) {
-        super(nom, sexe);
-    }
-
-    @Override
-    public String getEspece() {
-        return "Carpe";
+    public Carpe(String nom, String sexe, Aquarium aquarium) {
+        super(nom, sexe, Espece.CARPE, aquarium);
     }
 }

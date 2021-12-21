@@ -1,10 +1,5 @@
 public class Thon extends Carnivore {
-    public Thon(String nom, String sexe) {
-        super(nom, sexe);
-    }
-
-    @Override
-    public String getEspece() {
-        return "Thon";
+    public Thon(String nom, String sexe, Aquarium aquarium) {
+        super(nom, sexe, Espece.THON, aquarium);
     }
 }
