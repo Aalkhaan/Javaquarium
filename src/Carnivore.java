@@ -5,6 +5,11 @@ public abstract class Carnivore extends Poisson {
         super(nom, sexe);
     }
 
+    @Override
+    public void manger() {
+
+    }
+
     public void manger(Poisson poisson) {
         poisson.seFaitMordre();
         addPV(5);

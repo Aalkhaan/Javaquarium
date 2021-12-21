@@ -3,6 +3,11 @@ public abstract class Herbivore extends Poisson {
         super(nom, sexe);
     }
 
+    @Override
+    public void manger() {
+
+    }
+
     public void manger(Algue algue) {
         algue.seFaitMordre();
         addPV(3);

@@ -3,19 +3,22 @@ import java.util.*;
 public class Aquarium {
     private final List<Algue> algues;
     private final Map<String, List<Poisson>> mapPoissons;
-    private final Map<String, List<Poisson>> mapAffames;
+    private final Map<String, Integer> effectifs;
 
     public Aquarium() {
         algues = new ArrayList<>();
         mapPoissons = new HashMap<>();
-        mapAffames = new HashMap<>();
+        effectifs = new HashMap<>();
     }
 
     public void addPoisson(Poisson poisson) {
-        if (!mapPoissons.containsKey(poisson.getEspece())) {
-            mapPoissons.put(poisson.getEspece(), new ArrayList<>());
+        String espece = poisson.getEspece();
+        if (!mapPoissons.containsKey(espece)) {
+            mapPoissons.put(espece, new ArrayList<>());
+            effectifs.put(espece, 0);
         }
-        mapPoissons.get(poisson.getEspece()).add(poisson);
+        mapPoissons.get(espece).add(poisson);
+        effectifs.put(espece, effectifs.get(espece) + 1);
     }
 
     public void addAlgue() {
@@ -54,29 +57,24 @@ public class Aquarium {
         for (String espece : mapPoissons.keySet())
 
 
-
-        for (Poisson poisson : affames) {
-            int randomIndice;
-            if (poissons.size() > 1 && poisson instanceof Carnivore) {
-                randomIndice = getRandomIndex(poissons);
-                Poisson randomPoisson = poissons.get(randomIndice);
-                while (randomPoisson == poisson) {
-                    randomIndice = getRandomIndex(poissons);
-                    randomPoisson = poissons.get(randomIndice);
-                }
-                ((Carnivore) poisson).manger(randomPoisson);
-            } else if (algues.size() > 0) {
-                randomIndice = getRandomIndex(algues);
-                Algue randomAlgue = algues.get(randomIndice);
-                ((Herbivore) poisson).manger(randomAlgue);
+        System.out.println("Nombre d'algues : " + algues.size());
+        for (String species : mapPoissons.keySet()) {
+            System.out.println(species + " :");
+            for (Poisson poisson : mapPoissons.get(species)) {
+                System.out.println(poisson);
             }
         }
-        System.out.println("Nombre d'algues : " + algues.size());
-        System.out.println("Poissons : " + poissons);
 
     }
 
     private int getRandomIndex(Collection<?> collection) {
         return new Random().nextInt(collection.size() - 1);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder toReturn = new StringBuilder();
+        toReturn.append("L'aquarium contient ").append(algues.size()).append(" algue")
+                .append((algues.size() == 1) ? "" : "s").append("\n");
     }
 }

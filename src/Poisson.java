@@ -25,7 +25,7 @@ public abstract class Poisson extends Vivant implements Comparable<Poisson> {
 
     @Override
     public String toString() {
-        return nom + " : " + sexe;
+        return nom + ", " + sexe;
     }
 
     @Override
@@ -45,4 +45,6 @@ public abstract class Poisson extends Vivant implements Comparable<Poisson> {
     }
 
     public abstract String getEspece();
+
+    public abstract void manger();
 }
