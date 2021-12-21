@@ -12,14 +12,6 @@ public class Main {
         aquarium.addPoisson(new Merou("Amélie", "Femelle", aquarium));
         aquarium.addPoisson(new Carpe("Caroline", "Femelle", aquarium));
         aquarium.addPoisson(new Carpe("Carolin", "Male", aquarium));
-        aquarium.nouveauTour();
-        aquarium.nouveauTour();
-        aquarium.nouveauTour();
-        aquarium.nouveauTour();
-        aquarium.nouveauTour();
-        aquarium.nouveauTour();
-        aquarium.nouveauTour();
-        aquarium.nouveauTour();
-        aquarium.nouveauTour();
+        aquarium.nouveauTourJusquePoissonsMorts(100);
     }
 }

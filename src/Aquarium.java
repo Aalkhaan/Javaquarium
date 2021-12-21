@@ -7,13 +7,13 @@ public class Aquarium {
     public Aquarium() {
         algues = new ArrayList<>();
         mapPoissons = new HashMap<>();
+        for (Espece espece : Espece.values()) {
+            mapPoissons.put(espece, new ArrayList<>());
+        }
     }
 
     public void addPoisson(Poisson poisson) {
         Espece espece = poisson.getEspece();
-        if (!mapPoissons.containsKey(espece)) {
-            mapPoissons.put(espece, new ArrayList<>());
-        }
         mapPoissons.get(espece).add(poisson);
     }
 
@@ -60,6 +60,21 @@ public class Aquarium {
         }
 
         System.out.println(this);
+    }
+
+    public void nouveauTour(int n) {
+        if (n < 0) throw new IllegalArgumentException("Le nombre de tours doit être positif");
+        for (int i = 0; i < n; i++) {
+            nouveauTour();
+        }
+    }
+
+    public void nouveauTourJusquePoissonsMorts(int limite) {
+        int i = 0;
+        while (!mapPoissons.isEmpty() && i < limite) {
+            nouveauTour();
+            i++;
+        }
     }
 
     @Override
