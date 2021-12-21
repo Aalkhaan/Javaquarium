@@ -1,8 +1,15 @@
 public abstract class Vivant {
     private int pV;
+    private int age;
 
     protected Vivant() {
         pV = 10;
+        age = 0;
+    }
+
+    protected Vivant(int age) {
+        if (age < 0) throw new IllegalArgumentException("L'age doit être positif");
+        this.age = age;
     }
 
     public int getPV() {
@@ -24,5 +31,10 @@ public abstract class Vivant {
     public boolean removePV(int pVs) {
         pV -= pVs;
         return pV <= 0;
+    }
+
+    public boolean vieillir() {
+        age++;
+        return age > 20;
     }
 }

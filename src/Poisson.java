@@ -13,6 +13,14 @@ public abstract class Poisson extends Vivant implements Comparable<Poisson> {
         this.aquarium = aquarium;
     }
 
+    public Poisson(String nom, Sexe sexe, Espece espece, Aquarium aquarium, int age) {
+        super(age);
+        this.nom = nom;
+        this.sexe = sexe;
+        this.espece = espece;
+        this.aquarium = aquarium;
+    }
+
     public String getNom() {
         return nom;
     }

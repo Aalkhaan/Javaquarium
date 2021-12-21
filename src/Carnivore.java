@@ -5,6 +5,10 @@ public abstract class Carnivore extends Poisson {
         super(nom, sexe, espece, aquarium);
     }
 
+    protected Carnivore(String nom, Sexe sexe, Espece espece, Aquarium aquarium, int age) {
+        super(nom, sexe, espece, aquarium, age);
+    }
+
     @Override
     public void manger() {
         PoissonMap mapPoissons = getMapPoissons();

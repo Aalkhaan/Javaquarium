@@ -6,6 +6,10 @@ public abstract class Herbivore extends Poisson {
         super(nom, sexe, espece, aquarium);
     }
 
+    protected Herbivore(String nom, Sexe sexe, Espece espece, Aquarium aquarium, int age) {
+        super(nom, sexe, espece, aquarium, age);
+    }
+
     @Override
     public void manger() {
         List<Algue> algues = getAlgues();

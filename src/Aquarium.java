@@ -26,8 +26,13 @@ public class Aquarium {
     }
 
     private void alguesGrandissent() {
-        for (Algue algue : algues) {
-            algue.addPV(1);
+        for (int i = 0; i < algues.size();) {
+            if (algues.get(i).vieillir()) {
+                algues.remove(i);
+            } else {
+                algues.get(i).addPV(1);
+                i++;
+            }
         }
     }
 
@@ -48,7 +53,7 @@ public class Aquarium {
         for (List<Poisson> poissons : poissonMap.values()) {
             for (int i = 0; i < poissons.size();) {
                 Poisson poisson = poissons.get(i);
-                if (poisson.removePV(1)) {
+                if (poisson.removePV(1) || poisson.vieillir()) {
                     poissons.remove(i);
                 } else {
                     if (poisson.getPV() <= 5) {
