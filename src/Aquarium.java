@@ -2,17 +2,16 @@ import java.util.*;
 
 public class Aquarium {
     private final List<Algue> algues;
-    private final List<Poisson> poissons;
     private final Map<String, List<Poisson>> mapPoissons;
+    private final Map<String, List<Poisson>> mapAffames;
 
     public Aquarium() {
         algues = new ArrayList<>();
-        poissons = new ArrayList<>();
         mapPoissons = new HashMap<>();
+        mapAffames = new HashMap<>();
     }
 
     public void addPoisson(Poisson poisson) {
-        poissons.add(poisson);
         if (!mapPoissons.containsKey(poisson.getEspece())) {
             mapPoissons.put(poisson.getEspece(), new ArrayList<>());
         }
@@ -26,7 +25,6 @@ public class Aquarium {
     public void nouveauTour() {
         // Mélange les entités vivantes.
         Collections.shuffle(algues);
-        Collections.shuffle(poissons);
         for (List<Poisson> list : mapPoissons.values()) {
             Collections.shuffle(list);
         }
@@ -38,19 +36,26 @@ public class Aquarium {
 
         // Les poissons ont faim et perdent 1 PV. Ceux qui ont moins de 5 PV sont ajoutés
         // à la liste des poissons qui veulent manger.
-        LinkedList<Poisson> poissonsFaim = new LinkedList<>();
-        for (int i = 0; i < poissons.size();) {
-            if (poissons.get(i).removePV(1)) {
-                poissons.remove(i);
-            } else {
-                if (poissons.get(i).getpV() <= 5) {
-                    poissonsFaim.add(poissons.get(i));
+        LinkedList<Poisson> affames = new LinkedList<>();
+        for (List<Poisson> poissons : mapPoissons.values()) {
+            for (int i = 0; i < poissons.size();) {
+                if (poissons.get(i).removePV(1)) {
+                    poissons.remove(i);
+                } else {
+                    if (poissons.get(i).getpV() <= 5) {
+                        affames.add(poissons.get(i));
+                    }
+                    i++;
                 }
-                i++;
             }
         }
 
-        for (Poisson poisson : poissonsFaim) {
+        Map<String, Integer> effectifs = new HashMap<>();
+        for (String espece : mapPoissons.keySet())
+
+
+
+        for (Poisson poisson : affames) {
             int randomIndice;
             if (poissons.size() > 1 && poisson instanceof Carnivore) {
                 randomIndice = getRandomIndex(poissons);

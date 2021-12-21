@@ -39,7 +39,9 @@ public abstract class Poisson extends Vivant implements Comparable<Poisson> {
 
     @Override
     public int compareTo(Poisson poisson) {
-        return 0;
+        int especeComparator = getEspece().compareTo(poisson.getEspece());
+        if (especeComparator != 0) return especeComparator;
+        return nom.compareTo(getNom());
     }
 
     public abstract String getEspece();

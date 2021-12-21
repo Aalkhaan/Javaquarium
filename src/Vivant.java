@@ -1,6 +1,5 @@
 public abstract class Vivant {
     private int pV;
-    private static
 
     protected Vivant() {
         pV = 10;
