@@ -1,24 +1,21 @@
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Aquarium {
     private final List<Algue> algues;
     private final Map<String, List<Poisson>> mapPoissons;
-    private final Map<String, Integer> effectifs;
 
     public Aquarium() {
         algues = new ArrayList<>();
         mapPoissons = new HashMap<>();
-        effectifs = new HashMap<>();
     }
 
     public void addPoisson(Poisson poisson) {
         String espece = poisson.getEspece();
         if (!mapPoissons.containsKey(espece)) {
             mapPoissons.put(espece, new ArrayList<>());
-            effectifs.put(espece, 0);
         }
         mapPoissons.get(espece).add(poisson);
-        effectifs.put(espece, effectifs.get(espece) + 1);
     }
 
     public void addAlgue() {
@@ -53,28 +50,31 @@ public class Aquarium {
             }
         }
 
-        Map<String, Integer> effectifs = new HashMap<>();
-        for (String espece : mapPoissons.keySet())
-
-
-        System.out.println("Nombre d'algues : " + algues.size());
-        for (String species : mapPoissons.keySet()) {
-            System.out.println(species + " :");
-            for (Poisson poisson : mapPoissons.get(species)) {
-                System.out.println(poisson);
-            }
+        for (Poisson poisson : affames) {
+            poisson.manger();
         }
-
-    }
-
-    private int getRandomIndex(Collection<?> collection) {
-        return new Random().nextInt(collection.size() - 1);
     }
 
     @Override
     public String toString() {
         StringBuilder toReturn = new StringBuilder();
         toReturn.append("L'aquarium contient ").append(algues.size()).append(" algue")
-                .append((algues.size() == 1) ? "" : "s").append("\n");
+                .append((algues.size() == 1) ? "" : "s");
+        if (!mapPoissons.isEmpty()) {
+            toReturn.append("\nEt les espèces suivantes de poissons :");
+            for (String species : mapPoissons.keySet()) {
+                toReturn.append(species).append(" :");
+                for (Poisson poisson : mapPoissons.get(species)) toReturn.append("\n").append(poisson);
+            }
+        }
+        return String.valueOf(toReturn);
+    }
+
+    public Map<String, List<Poisson>> getMapPoissons() {
+        return mapPoissons;
+    }
+
+    public List<Algue> getAlgues() {
+        return algues;
     }
 }
