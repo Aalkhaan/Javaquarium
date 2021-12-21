@@ -2,11 +2,11 @@ import java.util.*;
 
 public abstract class Poisson extends Vivant implements Comparable<Poisson> {
     private final String nom;
-    private final String sexe;
+    private final Sexe sexe;
     private final Espece espece;
     private final Aquarium aquarium;
 
-    protected Poisson(String nom, String sexe, Espece espece, Aquarium aquarium) {
+    protected Poisson(String nom, Sexe sexe, Espece espece, Aquarium aquarium) {
         this.nom = nom;
         this.sexe = sexe;
         this.espece = espece;
@@ -17,7 +17,7 @@ public abstract class Poisson extends Vivant implements Comparable<Poisson> {
         return nom;
     }
 
-    public String getSexe() {
+    public Sexe getSexe() {
         return sexe;
     }
 
@@ -29,7 +29,7 @@ public abstract class Poisson extends Vivant implements Comparable<Poisson> {
 
     @Override
     public String toString() {
-        return nom + ", " + sexe + ", " + getpV() + " PVs";
+        return nom + ", " + sexe + ", " + getPV() + " PVs";
     }
 
     @Override

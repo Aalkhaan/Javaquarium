@@ -5,7 +5,7 @@ public abstract class Vivant {
         pV = 10;
     }
 
-    public int getpV() {
+    public int getPV() {
         return pV;
     }
 

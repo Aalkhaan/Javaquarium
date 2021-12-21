@@ -6,6 +6,6 @@ public class Algue extends Vivant {
 
     @Override
     public String toString() {
-        return "Algue, " + getpV() + " PVs";
+        return "Algue, " + getPV() + " PVs";
     }
 }

@@ -1,7 +1,7 @@
 import java.util.Random;
 
 public abstract class Carnivore extends Poisson {
-    protected Carnivore(String nom, String sexe, Espece espece, Aquarium aquarium) {
+    protected Carnivore(String nom, Sexe sexe, Espece espece, Aquarium aquarium) {
         super(nom, sexe, espece, aquarium);
     }
 

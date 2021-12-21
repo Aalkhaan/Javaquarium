@@ -51,7 +51,7 @@ public class Aquarium {
                 if (poisson.removePV(1)) {
                     poissons.remove(i);
                 } else {
-                    if (poisson.getpV() <= 5) {
+                    if (poisson.getPV() <= 5) {
                         affames.add(poisson);
                     }
                     i++;
