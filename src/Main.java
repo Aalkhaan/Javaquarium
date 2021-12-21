@@ -1,10 +1,7 @@
 public class Main {
     public static void main(String[] args) {
         Aquarium aquarium = new Aquarium();
-        aquarium.addAlgue();
-        aquarium.addAlgue();
-        aquarium.addAlgue();
-        aquarium.addAlgue();
+        aquarium.addAlgue(4);
         aquarium.addPoisson(new Merou("Amélie", "Femelle", aquarium));
         aquarium.addPoisson(new Merou("Amélie", "Femelle", aquarium));
         aquarium.addPoisson(new Merou("Amélie", "Femelle", aquarium));

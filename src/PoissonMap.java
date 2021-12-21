@@ -1,19 +1,31 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
-public class PoissonMap<E extends Espece, L extends List<Poisson>> extends HashMap<Espece, List<Poisson>> {
+public class PoissonMap {
+    private final Map<Espece, List<Poisson>> map;
+
     public PoissonMap() {
+        map = new HashMap<>();
         for (Espece espece : Espece.values()) {
-            put(espece, new ArrayList<>());
+            map.put(espece, new ArrayList<>());
         }
     }
 
-    @Override
     public boolean isEmpty() {
         for (Espece espece : Espece.values()) {
-            if (get(espece).isEmpty()) return true;
+            if (!map.get(espece).isEmpty()) return false;
         }
-        return false;
+        return true;
+    }
+
+    public List<Poisson> get(Espece espece) {
+        return map.get(espece);
+    }
+
+    public Collection<List<Poisson>> values() {
+        return map.values();
+    }
+
+    public Set<Espece> keySet() {
+        return map.keySet();
     }
 }

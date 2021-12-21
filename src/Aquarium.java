@@ -2,23 +2,27 @@ import java.util.*;
 
 public class Aquarium {
     private final List<Algue> algues;
-    private final Map<Espece, List<Poisson>> mapPoissons;
+    private final PoissonMap poissonMap;
 
     public Aquarium() {
         algues = new ArrayList<>();
-        mapPoissons = new HashMap<>();
-        for (Espece espece : Espece.values()) {
-            mapPoissons.put(espece, new ArrayList<>());
-        }
+        poissonMap = new PoissonMap();
     }
 
     public void addPoisson(Poisson poisson) {
         Espece espece = poisson.getEspece();
-        mapPoissons.get(espece).add(poisson);
+        poissonMap.get(espece).add(poisson);
     }
 
     public void addAlgue() {
         algues.add(new Algue());
+    }
+
+    public void addAlgue(int n) {
+        if (n < 0) throw new IllegalArgumentException("Le nombre de tours doit être positif");
+        for (int i = 0; i < n; i++) {
+            addAlgue();
+        }
     }
 
     private void alguesGrandissent() {
@@ -29,7 +33,7 @@ public class Aquarium {
 
     private void melangeEntites() {
         Collections.shuffle(algues);
-        for (List<Poisson> list : mapPoissons.values()) {
+        for (List<Poisson> list : poissonMap.values()) {
             Collections.shuffle(list);
         }
     }
@@ -41,7 +45,7 @@ public class Aquarium {
         // Les poissons ont faim et perdent 1 PV. Ceux qui ont moins de 5 PV sont ajoutés
         // à la liste des poissons qui veulent manger.
         LinkedList<Poisson> affames = new LinkedList<>();
-        for (List<Poisson> poissons : mapPoissons.values()) {
+        for (List<Poisson> poissons : poissonMap.values()) {
             for (int i = 0; i < poissons.size();) {
                 Poisson poisson = poissons.get(i);
                 if (poisson.removePV(1)) {
@@ -71,7 +75,7 @@ public class Aquarium {
 
     public void nouveauTourJusquePoissonsMorts(int limite) {
         int i = 0;
-        while (!mapPoissons.isEmpty() && i < limite) {
+        while (!poissonMap.isEmpty() && i < limite) {
             nouveauTour();
             i++;
         }
@@ -81,25 +85,25 @@ public class Aquarium {
     public String toString() {
         StringBuilder toReturn = new StringBuilder();
         toReturn.append("__________________________________________________________________________________________\n");
-        if (algues.isEmpty() && mapPoissons.isEmpty()) {
+        if (algues.isEmpty() && poissonMap.isEmpty()) {
             return "Cet aquarium est vide.";
         }
         if (!algues.isEmpty()) {
             toReturn.append("Cet aquarium contient ").append(algues.size()).append(" algue")
                     .append((algues.size() == 1) ? "" : "s");
         }
-        if (!mapPoissons.isEmpty()) {
+        if (!poissonMap.isEmpty()) {
             toReturn.append("\nEt les espèces suivantes de poissons :");
-            for (Espece species : mapPoissons.keySet()) {
+            for (Espece species : poissonMap.keySet()) {
                 toReturn.append("\n\n").append(species).append(" :");
-                for (Poisson poisson : mapPoissons.get(species)) toReturn.append("\n").append(poisson);
+                for (Poisson poisson : poissonMap.get(species)) toReturn.append("\n").append(poisson);
             }
         }
         return String.valueOf(toReturn);
     }
 
-    public Map<Espece, List<Poisson>> getMapPoissons() {
-        return mapPoissons;
+    public PoissonMap getPoissonMap() {
+        return poissonMap;
     }
 
     public List<Algue> getAlgues() {

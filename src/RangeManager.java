@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class RangeManager {
-    public Espece getRandomKey(Map<Espece, List<Poisson>> map, Espece eatingSpecies) {
+    public Espece getRandomKey(PoissonMap map, Espece eatingSpecies) {
         List<Range> ranges = new LinkedList<>();
         int nombrePoissons = 0;
         for (Espece species : map.keySet()) {

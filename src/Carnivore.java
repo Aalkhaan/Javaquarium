@@ -1,5 +1,3 @@
-import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 public abstract class Carnivore extends Poisson {
@@ -9,7 +7,7 @@ public abstract class Carnivore extends Poisson {
 
     @Override
     public void manger() {
-        Map<Espece, List<Poisson>> mapPoissons = getMapPoissons();
+        PoissonMap mapPoissons = getMapPoissons();
         Espece especeAManger = new RangeManager().getRandomKey(mapPoissons, getEspece());
         if (especeAManger != null) {
             int randomIndex = new Random().nextInt(mapPoissons.get(especeAManger).size());

@@ -50,8 +50,8 @@ public abstract class Poisson extends Vivant implements Comparable<Poisson> {
 
     public abstract void manger();
 
-    public Map<Espece, List<Poisson>> getMapPoissons() {
-        return aquarium.getMapPoissons();
+    public PoissonMap getMapPoissons() {
+        return aquarium.getPoissonMap();
     }
 
     public List<Algue> getAlgues() {
