@@ -99,9 +99,11 @@ public class Aquarium {
         }
         if (!poissonMap.isEmpty()) {
             toReturn.append("\nEt les espèces suivantes de poissons :");
-            for (Espece species : poissonMap.keySet()) {
-                toReturn.append("\n\n").append(species).append(" :");
-                for (Poisson poisson : poissonMap.get(species)) toReturn.append("\n").append(poisson);
+            for (Espece espece : poissonMap.keySet()) {
+                if (!poissonMap.get(espece).isEmpty()) {
+                    toReturn.append("\n\n").append(espece).append(" :");
+                    for (Poisson poisson : poissonMap.get(espece)) toReturn.append("\n").append(poisson);
+                }
             }
         }
         return String.valueOf(toReturn);

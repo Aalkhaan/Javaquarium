@@ -65,4 +65,8 @@ public abstract class Poisson extends Vivant implements Comparable<Poisson> {
     public List<Algue> getAlgues() {
         return aquarium.getAlgues();
     }
+
+    public void action() {
+
+    }
 }
