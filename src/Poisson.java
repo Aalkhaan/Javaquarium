@@ -1,8 +1,8 @@
 import java.util.*;
 
-public abstract class Poisson extends Vivant implements Comparable<Poisson> {
+public abstract class Poisson extends Vivant {
     private final String nom;
-    private final Sexe sexe;
+    private Sexe sexe;
     private final Espece espece;
     private final Aquarium aquarium;
 
@@ -36,20 +36,18 @@ public abstract class Poisson extends Vivant implements Comparable<Poisson> {
     }
 
     @Override
+    public int hashCode() {
+        return nom.hashCode();
+    }
+
+    @Override
     public String toString() {
-        return nom + ", " + sexe + ", " + getPV() + " PVs";
+        return nom + ", " + sexe + super.toString();
     }
 
     @Override
     public boolean seFaitMordre() {
-        return removePV(4);
-    }
-
-    @Override
-    public int compareTo(Poisson poisson) {
-        int especeComparator = getEspece().compareTo(poisson.getEspece());
-        if (especeComparator != 0) return especeComparator;
-        return nom.compareTo(getNom());
+        return removePV(10);
     }
 
     public Espece getEspece() {
@@ -58,15 +56,47 @@ public abstract class Poisson extends Vivant implements Comparable<Poisson> {
 
     public abstract void manger();
 
-    public PoissonMap getMapPoissons() {
-        return aquarium.getPoissonMap();
+    public Aquarium getAquarium() {
+        return aquarium;
+    }
+
+    public MapPoisson getMapPoissons() {
+        return aquarium.getMapPoisson();
     }
 
     public List<Algue> getAlgues() {
         return aquarium.getAlgues();
     }
 
-    public void action() {
-
+    public boolean aFaim() {
+        return removePV(2);
     }
+
+    public void action() {
+        if (getPV() <= 5) {
+            manger();
+        } else seReproduire();
+    }
+
+    public void seReproduire() {
+        MapPoisson mapPoisson = getMapPoissons();
+        Espece espece = EspeceManager.getRandomEspece(mapPoisson);
+        int randomIndex = new Random().nextInt(mapPoisson.get(espece).size());
+        if (mapPoisson.get(espece).get(randomIndex) != this) {
+            seReproduire(mapPoisson.get(espece).get(randomIndex));
+        }
+    }
+
+    public abstract void seReproduire(Poisson poisson);
+
+    public void switchSexe() {
+        if (sexe == Sexe.MALE) sexe = Sexe.FEMELLE;
+        else sexe = Sexe.MALE;
+    }
+
+    /**
+     * Renvoie si les deux poissons sont capables de se reproduire entre eux et opère les changements
+     * appropriés en fonction de leur sexualité.
+     */
+    public abstract boolean rencontre(Poisson poisson);
 }

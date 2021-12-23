@@ -1,5 +1,6 @@
 public abstract class Vivant {
     private int pV;
+
     private int age;
 
     protected Vivant() {
@@ -33,8 +34,21 @@ public abstract class Vivant {
         return pV <= 0;
     }
 
+    void setPV(int pV) {
+        this.pV = pV;
+    }
+
     public boolean vieillir() {
         age++;
-        return age > 20;
+        return age > 10;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    @Override
+    public String toString() {
+        return ", " + getPV() + " PVs, " + getAge() + " ans";
     }
 }

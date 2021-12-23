@@ -11,9 +11,9 @@ public abstract class Carnivore extends Poisson {
 
     @Override
     public void manger() {
-        PoissonMap mapPoissons = getMapPoissons();
-        Espece especeAManger = EspeceManager.getRandomEspece(mapPoissons, getEspece());
-        if (especeAManger != null) {
+        MapPoisson mapPoissons = getMapPoissons();
+        Espece especeAManger = EspeceManager.getRandomEspece(mapPoissons);
+        if (especeAManger != null && especeAManger != getEspece()) {
             int randomIndex = new Random().nextInt(mapPoissons.get(especeAManger).size());
             if (manger(mapPoissons.get(especeAManger).get(randomIndex))) {
                 mapPoissons.get(especeAManger).remove(randomIndex);

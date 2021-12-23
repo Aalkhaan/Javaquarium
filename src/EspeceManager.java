@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class EspeceManager {
-    public static Espece getRandomEspece(PoissonMap map, Espece eatingSpecies) {
+    public static Espece getRandomEspece(MapPoisson map, Espece eatingSpecies) {
         List<Range> ranges = new LinkedList<>();
         int nombrePoissons = 0;
         for (Espece species : map.keySet()) {
@@ -19,7 +19,7 @@ public class EspeceManager {
         return null;
     }
 
-    public static Espece getRandomEspece(PoissonMap map) {
+    public static Espece getRandomEspece(MapPoisson map) {
         List<Range> ranges = new LinkedList<>();
         int nombrePoissons = 0;
         for (Espece species : map.keySet()) {

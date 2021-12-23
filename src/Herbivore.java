@@ -15,12 +15,14 @@ public abstract class Herbivore extends Poisson {
         List<Algue> algues = getAlgues();
         if (!algues.isEmpty()) {
             int randomIndex = new Random().nextInt(algues.size());
-            manger(algues.get(randomIndex));
+            if (manger(algues.get(randomIndex))) {
+                algues.remove(randomIndex);
+            }
         }
     }
 
-    public void manger(Algue algue) {
-        algue.seFaitMordre();
+    public boolean manger(Algue algue) {
         addPV(3);
+        return algue.seFaitMordre();
     }
 }

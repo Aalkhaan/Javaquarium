@@ -1,9 +1,9 @@
 import java.util.*;
 
-public class PoissonMap {
+public class MapPoisson {
     private final Map<Espece, List<Poisson>> map;
 
-    public PoissonMap() {
+    public MapPoisson() {
         map = new HashMap<>();
         for (Espece espece : Espece.values()) {
             map.put(espece, new ArrayList<>());

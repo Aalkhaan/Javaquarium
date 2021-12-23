@@ -1,8 +1,8 @@
 public enum Espece {
-    BAR,
-    CARPE,
     MEROU,
+    THON,
     POISSON_CLOWN,
     SOLE,
-    THON
+    BAR,
+    CARPE,
 }
